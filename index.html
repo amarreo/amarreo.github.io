@@ -1,16 +1,27 @@
+<html lang="es">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2R35CCW749"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2R35CCW749');
-</script>
-<!-- Umami -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="e8cb8d49-c8f5-4b25-921c-ba093c9380f7"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tests onetrust</title>
+  <script src="script.js" defer></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2R35CCW749"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-2R35CCW749');
+  </script>
+  <!-- Umami -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e8cb8d49-c8f5-4b25-921c-ba093c9380f7"></script>
 </head>
 <body>
-  Hello onetrust world!
+  <!-- Language selector -->
+  <select id="languageSelector">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+  
+  <h1 id="welcomeMessage">Hello onetrust world!</h1>
 </body>
