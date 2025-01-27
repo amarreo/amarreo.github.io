@@ -1,0 +1,17 @@
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          padding: 20px;
+      }
+      .hobby-icons {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin-top: 20px;
+      }
+      .hobby-icon {
+          width: 80px;
+          height: 80px;
+      }
+  </style>
