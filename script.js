@@ -32,7 +32,7 @@ function changeLanguage(language) {
 document.addEventListener("DOMContentLoaded", () => {
   console.log('DOMContentLoaded');
   const savedLanguage = getCookie("language") || "es"; // Spanish by default
-  console.log('language': ', language);
+  console.log('language: ', language);
   const languageSelector = document.getElementById("languageSelector");
 
   languageSelector.value = savedLanguage;
