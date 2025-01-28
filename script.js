@@ -1,3 +1,4 @@
+console.log('Primera línea de script.js');
 /* Language selection in cookies */
 const translations = {
   es: {
