@@ -22,6 +22,7 @@ function setCookie(name, value, days) {
 }
 
 function changeLanguage(language) {
+  console.log('Changing language to ': ', language);
   setCookie("language", language, 7); // Store selected language in a cookie
   const welcomeMessage = document.getElementById("welcomeMessage");
   welcomeMessage.textContent = translations[language].welcomeMessage;
@@ -29,7 +30,9 @@ function changeLanguage(language) {
 
 // Set language based on cookie during web loading
 document.addEventListener("DOMContentLoaded", () => {
+  console.log('DOMContentLoaded');
   const savedLanguage = getCookie("language") || "es"; // Spanish by default
+  console.log('language': ', language);
   const languageSelector = document.getElementById("languageSelector");
 
   languageSelector.value = savedLanguage;
@@ -40,44 +43,43 @@ document.addEventListener("DOMContentLoaded", () => {
   languageSelector.addEventListener("change", (event) => {
     changeLanguage(event.target.value);
   });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const saveButton = document.getElementById("save-hobbies");
-    const hobbyIconsDiv = document.getElementById("hobby-icons");
+/* Hobbies */
+  const saveButton = document.getElementById("save-hobbies");
+  const hobbyIconsDiv = document.getElementById("hobby-icons");
 
-    const hobbyIcons = {
-        sports: "./sports.png",
-        shopping: "./shopping.png",
-        technology: "./technology.png"
-    };
+  const hobbyIcons = {
+    sports: "./sports.png",
+    shopping: "./shopping.png",
+    technology: "./technology.png"
+  };
 
   /* Hobbies selection in localStorage */
   const loadHobbies = () => {
-      const savedHobbies = JSON.parse(localStorage.getItem("userHobbies")) || [];
-      displayHobbyIcons(savedHobbies);
+    const savedHobbies = JSON.parse(localStorage.getItem("userHobbies")) || [];
+    displayHobbyIcons(savedHobbies);
   };
 
   const saveHobbies = () => {
-      const selectedHobbies = Array.from(
-          document.querySelectorAll("#hobby-form input[type=checkbox]:checked")
-      ).map(checkbox => checkbox.value);
+    const selectedHobbies = Array.from(
+      document.querySelectorAll("#hobby-form input[type=checkbox]:checked")
+    ).map(checkbox => checkbox.value);
 
-      localStorage.setItem("userHobbies", JSON.stringify(selectedHobbies));
-      displayHobbyIcons(selectedHobbies);
+    localStorage.setItem("userHobbies", JSON.stringify(selectedHobbies));
+    displayHobbyIcons(selectedHobbies);
   };
 
   // Display hobby icons based on the selected hobbies
   const displayHobbyIcons = (hobbies) => {
-      hobbyIconsDiv.innerHTML = ""; // Clear existing icons
+    hobbyIconsDiv.innerHTML = ""; // Clear existing icons
 
-      hobbies.forEach(hobby => {
-          const img = document.createElement("img");
-          img.src = hobbyIcons[hobby];
-          img.alt = hobby;
-          img.className = "hobby-icon";
-          hobbyIconsDiv.appendChild(img);
-      });
+    hobbies.forEach(hobby => {
+        const img = document.createElement("img");
+        img.src = hobbyIcons[hobby];
+        img.alt = hobby;
+        img.className = "hobby-icon";
+        hobbyIconsDiv.appendChild(img);
+    });
   };
 
   // Add event listener to the Save button
@@ -85,4 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Load hobbies on page load
   loadHobbies();
+  console.log('loadHobbies called');
 });
