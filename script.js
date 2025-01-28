@@ -22,7 +22,7 @@ function setCookie(name, value, days) {
 }
 
 function changeLanguage(language) {
-  console.log('Changing language to ': ', language);
+  console.log('Changing language to: ', language);
   setCookie("language", language, 7); // Store selected language in a cookie
   const welcomeMessage = document.getElementById("welcomeMessage");
   welcomeMessage.textContent = translations[language].welcomeMessage;
