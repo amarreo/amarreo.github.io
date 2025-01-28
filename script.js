@@ -29,9 +29,18 @@ function changeLanguage(language) {
   welcomeMessage.textContent = translations[language].welcomeMessage;
 }
 
-// Set language based on cookie during web loading
-document.addEventListener("DOMContentLoaded", () => {
-  console.log('DOMContentLoaded');
+if (document.readyState !== 'loading') {
+  console.log('document is already ready, just execute code here');
+  myInitCode();
+} else {
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('document was not ready, place code here');
+    myInitCode();
+  });
+}
+
+function myInitCode() {
+  console.log('myInitCode');
   const savedLanguage = getCookie("language") || "es"; // Spanish by default
   console.log('savedLanguage: ', savedLanguage);
   const languageSelector = document.getElementById("languageSelector");
@@ -89,4 +98,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load hobbies on page load
   loadHobbies();
   console.log('loadHobbies called');
-});
+}
