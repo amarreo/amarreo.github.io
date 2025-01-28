@@ -8,14 +8,76 @@
   <script type="text/javascript" src="https://cdn.cookielaw.org/consent/0194a769-7af9-7039-a0f8-22e8d8f0151e/OtAutoBlock.js" ></script>
   <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="0194a769-7af9-7039-a0f8-22e8d8f0151e" ></script>
   <script type="text/javascript">
-    console.log('Dentro del script inline');
     function OptanonWrapper() {
-      console.log('Dentro de OptanonWrapper');
     }
   </script>
   <!-- OneTrust Cookies Consent Notice end for amarreo.github.io -->  
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
+  <script src="hobby.js" defer></script>
+  <script type="text/javascript">
+    function fetchIP() {
+      // Fetch the IP address from the API
+      fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => {
+            alert(data.ip);
+        })
+        .catch(error => {
+            console.error("Error fetching IP address:", error);
+        });
+
+      if (document.readyState !== 'loading') {
+        fetchIP();
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          fetchIP();
+        });
+    }
+  </script>
+  <script type="text/javascript">
+    /* Username selection in cookies */
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+    }
+
+    function changeUsername(username) {
+      setCookie("username", username, 7); // Store selected language in a cookie
+      const welcomeMessageUSer = document.getElementById("welcomeMessageUser");
+      welcomeMessageUser.textContent = username;
+    }
+
+    if (document.readyState !== 'loading') {
+      myInitCodeUsername();
+    } else {
+      document.addEventListener('DOMContentLoaded', function () {
+        myInitCodeUsername();
+      });
+    }
+
+    function myInitCodeUsername() {
+      const savedUsername = getCookie("username") || "user";
+      const usernameSelector = document.getElementById("usernameSelector");
+    
+      usernameSelector.value = savedUsername;
+    
+      changeUsername(savedUsername);
+    
+      // Event to change language when selecting a new one
+      usernameSelector.addEventListener("change", (event) => {
+        changeUsername(event.target.value);
+      });
+    }   
+  </script>
   <link rel="stylesheet" href="styles.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2R35CCW749"></script>
@@ -35,8 +97,14 @@
     <option value="es">Español</option>
     <option value="en">English</option>
   </select>
-  
-  <h1 id="welcomeMessage">Hello onetrust world!</h1>
+
+  <select id="usernameSelector">
+    <option value="Felipe">Felipe VI</option>
+    <option value="Iniesta">Andrés Iniesta</option>
+    <option value="Loquillo">Loquillo el troglodita</option>
+  </select>
+   
+  <h1 id="welcomeMessage">Hello onetrust user <span id="welcomeMessageUser">user</span>!</h1>
 
   <form id="hobby-form">
       <label>
